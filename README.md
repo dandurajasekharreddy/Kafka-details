@@ -57,5 +57,8 @@ kafka-topics.bat --create --topic first-kraft-topic --bootstrap-server localhost
 **To produce message on topic**
 kafka-console-producer.bat --topic first-kraft-topic --bootstrap-server localhost:9092
 
+**To produce message on topic using json file**
+type C:\Users\hp\Downloads\sample.json | kafka-console-producer.bat --topic first-kraft-topic --bootstrap-server localhost:9092
+
 **To consume message on topic**
 kafka-console-consumer.bat --topic first-kraft-topic --from-beginning --bootstrap-server localhost:9092
