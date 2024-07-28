@@ -42,6 +42,7 @@ kafka-storage.bat random-uuid
 **To set UUID to a variable :-**
 
 set KAFKA_CLUSTER_ID={use the uuid generated above}
+set KAFKA_CLUSTER_ID=E9Bu8rzBQAa01FuZUlyG8A 
 
 **To format  log directories**
 
@@ -127,3 +128,12 @@ bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic NewTopic1 -
 **Send CSV File data to kafka**
 
 bin/kafka-console-producer --broker-list localhost:9092 --topic NewTopic1 <bin/customers.csv
+
+**Decode log from tmp cluster metadata**
+![image](https://github.com/user-attachments/assets/8c4f5885-8ee9-4e1c-af0f-8cdc221e8661)
+
+ kafka-dump-log.bat --cluster-metadata-decoder --files ../00000000000000000000.log --print-data-log
+
+ **Check the cluster status**
+
+ kafka-metadata-quorum.bat --bootstrap-server localhost:9092 describe --status
