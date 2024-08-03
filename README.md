@@ -10,25 +10,33 @@ Set class path in envirnment variables.
 
 **Required Commands:**
 
+**Start Zookeeper:**
 .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
 
+**start kafka:**
 .\bin\windows\kafka-server-start.bat .\config\server.properties
 
+**create topic:**
 kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partition 1 --topic test
 
-kafka-console-producer.bat --broker-list localhost:9092 --topic test
--------------------------------------------------------------------------------------------------------
-Sample Data:
+**Delete a topic:**
+bin/windows/kafka-topics.bat --delete --bootstrap-server localhost:2181 --topic my_topic
 
+**Produce messages:**
+kafka-console-producer.bat --broker-list localhost:9092 --topic test
+
+Sample Data:
 {"Name: "John", "Age":"31", "Gender":"Male"}
 {"Name: "Emma", "Age":"27", "Gender":"Female"}
 {"Name: "Ronald", "Age":"17", "Gender":"Male"}
----------------------------------------------------------------------------------------------------------
 
+**Consume messages:**
 kafka-console-consumer.bat --topic test --bootstrap-server localhost:9092 --from-beginning
 
+**stop zookeeper:**
 .\bin\windows\zookeeper-server-stop.bat .\config\zookeeper.properties
 
+**stop kafka:**
 .\bin\windows\kafka-server-stop.bat .\config\server.properties
 
 
@@ -63,6 +71,30 @@ type C:\Users\hp\Downloads\sample.json | kafka-console-producer.bat --topic firs
 
 **To consume message on topic**
 kafka-console-consumer.bat --topic first-kraft-topic --from-beginning --bootstrap-server localhost:9092
+
+**List consumer groups:**
+bin/windows//kafka-consumer-groups.bat --list --bootstrap-server localhost:9092
+
+**Describe a consumer group:**
+bin/windows/kafka-consumer-groups.bat --describe  --group my_group --bootstrap-server localhost:9092
+
+**Delete a consumer group:**
+bin/windows/kafka-consumer-groups.bat --delete --group my_group --bootstrap-server localhost:9092
+
+**Check offsets for a consumer group:**
+bin/windows/kafka-consumer-groups.bat --offsets --group my_group --topic my_topic --partition 0 --bootstrap-server localhost:9092
+
+**Reset offsets for a consumer group:**
+bin/windows/kafka-consumer-groups.bat --reset-offsets --group my_group --topic my_topic --partition 0 --to-earliest --bootstrap-server localhost:9092
+
+**Check partition leadership:**
+bin/windows/kafka-preferred-replica-election.bat --bootstrap-server localhost:9092
+
+**Check broker information:**
+bin/windows/kafka-broker-list.bat --bootstrap-server localhost:9092
+
+**Check cluster metadata:**
+bin/windows/kafka-cluster.bat --describe --bootstrap-server localhost:9092
 
 ---------------------------------------------------------------
 **Open Source Kafka Startup in local**
